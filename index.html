@@ -85,17 +85,17 @@ var myRenderer = L.canvas({ padding: 0.5 });
   controlLayers.addBaseLayer(osm, 'Open Street Map');
    
       
-      $.getJSON("./Wards.geojson",function(data){
+      //$.getJSON("./Wards.geojson",function(data){
     // add GeoJSON layer to the map once the file is loaded
-      L.geoJson(data,{
-        weight: 2,
-        color: '#FF00FF',
-        fill: false,
-        fillColor: '#0000FF',
-        opacity: 2,
-        fillOpacity: 0
-      }).addTo(map);
-  });  
+     // L.geoJson(data,{
+      //  weight: 2,
+      //  color: '#FF00FF',
+      //  fill: false,
+      //  fillColor: '#0000FF',
+      //  opacity: 2,
+      //  fillOpacity: 0
+     // }).addTo(map);
+ // });  
 
       
 
@@ -111,8 +111,6 @@ var myRenderer = L.canvas({ padding: 0.5 });
     // For each row, columns `Latitude`, `Longitude`, and `Title` are required
     for (var i in data) {
       var row = data[i];
-      var family = (row.Family === 'Myrtaceae') ? "#20B2AA" : (row.Family === 'Oleaceae') ? "blue" : (row.Family === 'N/A') ? "grey" : (row.Family === 'N/A') ? "grey" : (row.Family === 'Bignoniaceae') ? "pink" : (row.Family === 'Elaeocarpaceae') ? "purple" : (row.Family === 'Casuarinaceae') ? "#EE82EE" : (row.Family === 'Arecaceae') ? "#FFA500" : "green";
-      
        
       var marker = L.circleMarker([row.Latitude, row.Longitude], {
         renderer: myRenderer,
@@ -120,15 +118,11 @@ var myRenderer = L.canvas({ padding: 0.5 });
         weight: 0.25,
         color: '#000000',
         fillOpacity: 1,
-        fillColor: family,
+        fillColor: #fc2119,
       }).bindPopup("<dl><dt><strong>Address</strong></dt>"
-           + "<dd>" + row.Address + "</dd>"
-           + "<dt><strong>Botanic Name</strong></dt>"
-           + "<dd><i>" + row.Species + "</i></dd>"
-	   + "<dt><strong>Common Name</strong></dt>"
-           + "<dd>" + row.Common + "</dd>"
-           + "<dt><strong>Tree ID</strong></dt>"
-           + "<dd>" + row.TreeID + "</dd>");
+           + "<dd>" + row.Conadd + "</dd>"
+           + "<dt><strong>NS ID</strong></dt>"
+           + "<dd>" + row.NS_ID + "</dd>");
       
       marker.addTo(map);
     }
